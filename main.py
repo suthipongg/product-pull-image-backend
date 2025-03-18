@@ -15,6 +15,7 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 DATABASE_NAME = os.getenv("DATABASE_NAME")
 COLLECTION_NAME = os.getenv("COLLECTION_NAME")
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS")
 
 client = MongoClient(MONGO_URI)
 db = client[DATABASE_NAME]
@@ -24,10 +25,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Adjust if frontend runs on another host
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 class BodyList(BaseModel):

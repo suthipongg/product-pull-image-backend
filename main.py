@@ -20,12 +20,16 @@ ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS")
 client = MongoClient(MONGO_URI)
 db = client[DATABASE_NAME]
 collection = db[COLLECTION_NAME]
+origins = [
+    ALLOWED_ORIGINS,
+    "http://localhost:3000"
+]
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

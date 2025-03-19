@@ -1,7 +1,7 @@
 name: Keep FastAPI Alive
 on:
   schedule:
-    - cron: "*/5 * * * *"  # ⏳ Ping ทุก 5 นาที
+    - cron: "*/1 * * * *"  # ⏳ Ping ทุก 1 นาที
 
 jobs:
   keep_alive:

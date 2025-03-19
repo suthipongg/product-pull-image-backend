@@ -1,0 +1,11 @@
+name: Keep FastAPI Alive
+on:
+  schedule:
+    - cron: "*/5 * * * *"  # ⏳ Ping ทุก 5 นาที
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Server
+        run: curl -s https://product-pull-image-backend.onrender.com/products || true

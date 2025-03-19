@@ -1,0 +1,15 @@
+name: Keep FastAPI Alive
+on:
+  schedule:
+    - cron: "*/1 * * * *"  # ⏳ Ping ทุก 1 นาที
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Server
+        run: |
+          curl -X POST "https://product-pull-image-backend.onrender.com/products" \
+               -H "accept: application/json" \
+               -H "Content-Type: application/json" \
+               -d '{"pageSize":1}' || true
